@@ -18,6 +18,8 @@ function changeTemperature(response) {
         document.querySelector("#humidity").innerHTML= response.data.main.humidity; 
         document.querySelector("#wind").innerHTML= Math.round(response.data.wind.speed);
         document.querySelector("#description").innerHTML= response.data.weather[0].description;
+        document.querySelector("#icon").setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+
     celsiusTemperature = response.data.main.temp;
     }
 
@@ -27,6 +29,7 @@ function changeCity(event) {
     let searchInput = document.querySelector ("#cityName");
 
 let h1 = document.querySelector("h1");
+
 if (searchInput.value) {
     h1.innerHTML = `${searchInput.value}`;
     let apiKey = "96771e971243152d6b8948878c26adde";
@@ -42,7 +45,8 @@ form.addEventListener("submit", changeCity);
 
 
 
-function seePosition (position){
+
+function seeMyPosition (position){
     let lat = position.coords.latitude; 
     let long = position.coords.longitude;
 
@@ -53,7 +57,7 @@ function seeTemp (response){
     let temperature = Math.round(response.data.main.temp);
     
 
-        function getMyPosition (event) {
+        function getMyPositionWeather (event) {
             event.preventDefault();
         let writeTemperature = document.querySelector("#todayTemp");
         writeTemperature.innerHTML = `${temperature}`;
@@ -62,17 +66,18 @@ function seeTemp (response){
         document.querySelector("#humidity").innerHTML= response.data.main.humidity; 
         document.querySelector("#wind").innerHTML= Math.round(response.data.wind.speed);
         document.querySelector("#description").innerHTML= response.data.weather[0].description;
-    
+        document.querySelector("#icon").setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+
     celsiusTemperature = response.data.main.temp;
          }
         let buttonCurrent = document.querySelector("#currentLocation");
-        buttonCurrent.addEventListener("click", getMyPosition);
+        buttonCurrent.addEventListener("click", getMyPositionWeather);
 
 }
 axios.get(`${weatherApi}`).then(seeTemp);
 
 }
-navigator.geolocation.getCurrentPosition(seePosition);
+navigator.geolocation.getCurrentPosition(seeMyPosition);
 
 
 function changeToFahrenheit(event){

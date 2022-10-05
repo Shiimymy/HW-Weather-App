@@ -101,7 +101,13 @@ footer {
 }
 
 .active {
-    color: rgba(0, 0, 0, 0.601);
+    color:rgba(0, 0, 0, 0.601);
+    text-decoration: none;
+}
+
+.active:hover {
+    color: rgba(13, 237, 162, 0.5);
+    text-decoration: none;
 }
 
 #todayDate {
