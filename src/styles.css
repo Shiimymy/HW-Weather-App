@@ -61,7 +61,7 @@ form:hover {
 h1,
 h2,
 h6,
-#todayDate {
+#today {
     background-color: transparent;
     color: white;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -110,8 +110,8 @@ footer {
     text-decoration: none;
 }
 
-#todayDate {
-    font-size: 30px;
+#today {
+    font-size: 20px;
 }
 
 #description {
