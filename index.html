@@ -1,12 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Weather App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
+
 <body>
-    
+    <div>
+        <form id="search-form">
+            <input type="search" name="location" id="cityName" required placeholder="New Location">
+            <button type="submit" id="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+                Change
+            </button>
+        </form>
+    </div>
+    <h1> Dublin </h1>
+    <button type="button" id="currentLocation">
+        Current Location Weather
+    </button>
+    <div id="todayDate"></div>
+    <h2> ⛅ <br>
+        <span id="todayTemp">
+            10 / 18
+        </span>
+        °C
+    </h2>
+    <h6>
+        Humidity : <span id="humidity">10</span> % | Wind : <span id="wind">2</span> km/h
+    </h6>
+
+        <footer>
+            <a id="github" href="https://github.com/Shiimymy/Project-App-Weather">Open-source code</a> by Eugénie Bvn.
+        </footer>
+        <script src="index.js"></script>
+
 </body>
+
 </html>
