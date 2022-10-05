@@ -1,4 +1,3 @@
-// Curent date 
 
 let now = new Date();
 let  currentDate = document.querySelector("#todayDate");
@@ -11,7 +10,17 @@ minute = `0${minute}`;
    }
 currentDate.innerHTML = `${day}, ${hour}:${minute}`;
 
-// Fetch Searched city with datas
+
+function changeTemperature(response) {
+        let temperature = Math.round(response.data.main.temp);
+        let newTemp = document.querySelector("#todayTemp");
+        newTemp.innerHTML = `${temperature}`;
+        document.querySelector("#humidity").innerHTML= response.data.main.humidity; 
+        document.querySelector("#wind").innerHTML= Math.round(response.data.wind.speed);
+        document.querySelector("#description").innerHTML= response.data.weather[0].description;
+    celsiusTemperature = response.data.main.temp;
+    }
+
 
 function changeCity(event) {
     event.preventDefault();
@@ -26,28 +35,19 @@ if (searchInput.value) {
 
 axios.get(`${apiUrl}`).then(changeTemperature);
     } 
-}
+} 
+
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", changeCity);
 
 
-function changeTemperature(response) {
-        let temperature = Math.round(response.data.main.temp);
-        let newTemp = document.querySelector("#todayTemp");
-        newTemp.innerHTML = `${temperature}`;
-        document.querySelector("#humidity").innerHTML= response.data.main.humidity; 
-        document.querySelector("#wind").innerHTML= Math.round(response.data.wind.speed);
-        document.querySelector("#description").innerHTML= response.data.weather[0].description;
-}
-
-
-// Fetch Current location city and datas
 
 function seePosition (position){
     let lat = position.coords.latitude; 
     let long = position.coords.longitude;
 
-let weatherApi = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=96771e971243152d6b8948878c26adde&units=metric`;
+    let weatherApi = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=96771e971243152d6b8948878c26adde&units=metric`;
+
 
 function seeTemp (response){
     let temperature = Math.round(response.data.main.temp);
@@ -62,7 +62,8 @@ function seeTemp (response){
         document.querySelector("#humidity").innerHTML= response.data.main.humidity; 
         document.querySelector("#wind").innerHTML= Math.round(response.data.wind.speed);
         document.querySelector("#description").innerHTML= response.data.weather[0].description;
-
+    
+    celsiusTemperature = response.data.main.temp;
          }
         let buttonCurrent = document.querySelector("#currentLocation");
         buttonCurrent.addEventListener("click", getMyPosition);
@@ -72,3 +73,31 @@ axios.get(`${weatherApi}`).then(seeTemp);
 
 }
 navigator.geolocation.getCurrentPosition(seePosition);
+
+
+function changeToFahrenheit(event){
+    event.preventDefault();
+    let temperature = document.querySelector("#todayTemp");
+    let fahrenheitTemperature = (celsiusTemperature*9/5)+32; 
+    temperature.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+
+function changeToCelsius(event){
+    event.preventDefault();
+    let temperature = document.querySelector("#todayTemp");
+    temperature.innerHTML = Math.round(celsiusTemperature);
+    
+}
+
+
+let fahrenheit = document.querySelector("#fahrenheit-link");
+fahrenheit.addEventListener("click", changeToFahrenheit)
+
+let celsius = document.querySelector("#celsius-link");
+celsius.addEventListener("click", changeToCelsius)
+
+let celsiusTemperature = null; 
+
+
+
