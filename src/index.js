@@ -37,6 +37,7 @@ function changeTemperature(response) {
         newTemp.innerHTML = `${temperature}`;
         document.querySelector("#humidity").innerHTML= response.data.main.humidity; 
         document.querySelector("#wind").innerHTML= Math.round(response.data.wind.speed);
+        document.querySelector("#description").innerHTML= response.data.weather[0].description;
 }
 
 
@@ -50,6 +51,7 @@ let weatherApi = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon
 
 function seeTemp (response){
     let temperature = Math.round(response.data.main.temp);
+    
 
         function getMyPosition (event) {
             event.preventDefault();
@@ -59,6 +61,7 @@ function seeTemp (response){
         myCity.innerHTML = response.data.name;
         document.querySelector("#humidity").innerHTML= response.data.main.humidity; 
         document.querySelector("#wind").innerHTML= Math.round(response.data.wind.speed);
+        document.querySelector("#description").innerHTML= response.data.weather[0].description;
 
          }
         let buttonCurrent = document.querySelector("#currentLocation");
