@@ -1,4 +1,3 @@
-
 let now = new Date();
 let currentDate = document.querySelector("#todayDate");
 let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
