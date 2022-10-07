@@ -22,7 +22,28 @@ function changeTemperature(response) {
 
     celsiusTemperature = response.data.main.temp;
 }
-////////////////////////
+///////////
+function displayForecast (){
+    let forecastElement = document.querySelector("#forecast");
+
+    let forecastHTML = `<div class="row">`; 
+    let days = ["Thu", "Fri", "Sat"];
+    days.forEach(function(day) {
+    forecastHTML = forecastHTML + `
+        <div class="col">
+            <p class="forecast-day">${day}</p>
+            <p class="temperatureWeekDay">8°/<span class="afternoon">17°</span>C</p>
+            <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="">
+        </div>
+    `;
+    })
+    forecastHTML = forecastHTML + `</div>`;
+    forecastElement.innerHTML= forecastHTML;   
+}
+
+
+
+////////
 function changeCity(city) {
     let h1 = document.querySelector("h1");
     h1.innerHTML = `${city}`;
@@ -101,3 +122,4 @@ let celsius = document.querySelector("#celsius-link");
 celsius.addEventListener("click", changeToCelsius)
 
 let celsiusTemperature = null;
+displayForecast();
