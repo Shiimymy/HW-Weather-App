@@ -79,7 +79,7 @@ h2 {
 }
 
 h6 {
-    margin-bottom: 70px;
+    margin-bottom: 40px;
     font-weight: 900;
 }
 
@@ -126,4 +126,45 @@ footer {
 #github:hover {
     color: rgba(13, 237, 162, 0.5);
     cursor: pointer;
+}
+
+
+
+
+.container {
+    margin-bottom: 20px;
+}
+
+.row {
+    margin: auto 0px;
+    background-color: rgba(0, 0, 255, 0.1);
+    padding: 20px 0px;
+    border: 3px solid white;
+    border-radius: 10px;
+    box-shadow: 2px 3px 2px rgba(128, 128, 128, 0.7);
+}
+
+.col {
+    margin: auto 0px;
+    background-color: transparent;
+    padding: 20px 10px;
+    border-left: 0.1px solid white;
+    text-align: center;
+}
+
+
+.afternoon {
+    font-weight: 450;
+    font-size: 25px;
+}
+
+.forecast-day {
+    font-size: 30px;
+    font-weight: 500;
+
+}
+
+.temperatureWeekDay {
+    font-size: 20px;
+    font-weight: 400;
 }
