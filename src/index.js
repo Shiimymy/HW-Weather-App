@@ -122,26 +122,3 @@ navigator.geolocation.getCurrentPosition(seeMyPosition);
 
 //
 
-function changeToFahrenheit(event) {
-    event.preventDefault();
-    let temperature = document.querySelector("#todayTemp");
-    let fahrenheitTemperature = (celsiusTemperature * 9 / 5) + 32;
-    temperature.innerHTML = Math.round(fahrenheitTemperature);
-}
-
-
-function changeToCelsius(event) {
-    event.preventDefault();
-    let temperature = document.querySelector("#todayTemp");
-    temperature.innerHTML = Math.round(celsiusTemperature);
-
-}
-
-
-let fahrenheit = document.querySelector("#fahrenheit-link");
-fahrenheit.addEventListener("click", changeToFahrenheit)
-
-let celsius = document.querySelector("#celsius-link");
-celsius.addEventListener("click", changeToCelsius)
-
-let celsiusTemperature = null;
