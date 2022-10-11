@@ -30,7 +30,7 @@ function displayForecast (response){
         <div class="col">
             <p class="forecast-day">${formatDay(forecastDay.dt)}</p>
             <p class="temperatureWeekDay">${Math.round(forecastDay.temp.min)}°/<span class="afternoon">${Math.round(forecastDay.temp.max)}°</span>C</p>
-            <img src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt=""width=70>
+            <img src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt=""width=70 id="forecastIcon">
         </div>
     `;
     }
@@ -57,6 +57,10 @@ function changeTemperature(response) {
     document.querySelector("#description").innerHTML = response.data.weather[0].description;
     document.querySelector("#icon").setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 
+//<link to API weather
+    let myCity = document.querySelector("h1");
+    myCity.innerHTML = response.data.name;
+//>
     celsiusTemperature = response.data.main.temp;
 
     getForecast(response.data.coord)
@@ -90,58 +94,14 @@ function seeMyPosition(position) {
 
     let apiKey = "96771e971243152d6b8948878c26adde";
     let weatherApi = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-    let apiUrlForcast = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
 
-    function seeTemp(response) {
-        let temperature = Math.round(response.data.main.temp);        
-
-        function getMyPositionWeather(event) {
-            event.preventDefault();
-            let writeTemperature = document.querySelector("#todayTemp");
-            writeTemperature.innerHTML = `${temperature}`;
-            let myCity = document.querySelector("h1");
-            myCity.innerHTML = response.data.name;
-            document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-            document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
-            document.querySelector("#description").innerHTML = response.data.weather[0].description;
-            document.querySelector("#icon").setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
-
-            celsiusTemperature = response.data.main.temp;
-
-            } 
-
-        function getMyPositionForecast (response) {
-            console.log(response.data.daily);
-            debugger
-            let forecast = response.data.daily;
-            let forecastElement = document.querySelector("#forecast");
-            let forecastHTML = `<div class="row">`; 
-            forecast.forEach(function(forecastDay, index) {
-                if (index < 5) {
-                forecastHTML = forecastHTML + `
-                 <div class="col">
-                    <p class="forecast-day">${formatDay(forecastDay.dt)}</p>
-                    <p class="temperatureWeekDay">${Math.round(forecastDay.temp.min)}°/<span class="afternoon">${Math.round(forecastDay.temp.max)}°</span>C</p>
-                    <img src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt=""width=70>
-                </div>
-                `;
-                }
-            })
-            forecastHTML = forecastHTML + `</div>`;
-            forecastElement.innerHTML= forecastHTML; 
-         }
-         axios.get(apiUrlForcast).then(getMyPositionForecast);
-
-        let buttonCurrent = document.querySelector("#currentLocation");
-        buttonCurrent.addEventListener("click", getMyPositionWeather);
-        buttonCurrent.addEventListener("click",getMyPositionForecast);
-
-    }
-    axios.get(`${weatherApi}`).then(seeTemp);
-
+  axios.get(`${weatherApi}`).then(changeTemperature);
 }
-navigator.geolocation.getCurrentPosition(seeMyPosition);
 
+function getCurrentPosition(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(seeMyPosition);
+}
 
-
-
+let buttonCurrent = document.querySelector("#currentLocation");
+buttonCurrent.addEventListener("click", getCurrentPosition);

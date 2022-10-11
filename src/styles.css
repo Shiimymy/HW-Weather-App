@@ -68,7 +68,7 @@ h2 {
     font-size: 70px;
 }
 
-h6 {
+#weatherDetails {
     margin-bottom: 40px;
     font-weight: 900;
 }
@@ -88,10 +88,7 @@ footer {
 
 .container {
     margin-bottom: 20px;
-}
-
-.container {
-    margin-bottom: 20px;
+    max-width: 900px;
 }
 
 .row {
@@ -113,8 +110,7 @@ footer {
 
 
 .afternoon {
-    font-weight: 450;
-    font-size: 25px;
+    font-weight: 700;
 }
 
 .forecast-day {
@@ -157,5 +153,40 @@ footer {
 }
 
 #icon {
-    width: 125px;
+    width: 150px;
+}
+
+#forecastIcon {
+    width: 85px;
+}
+
+@media screen and (max-width: 700px) {
+    body {
+        max-width: 98%;
+        margin: 3px auto;
+    }
+    h1 {
+        font-size: 75px;
+    }
+    h2 {
+        font-size: 55px;
+    }
+
+    .col {
+        padding: 5px 5px;
+        border-left: 0.1px solid white;
+        }
+    .forecast-day {
+        font-size: 20px;
+    }
+    .temperatureWeekDay {
+        font-size: 13px;
+    }
+    .afternoon {
+        font-size: 15px;
+        font-weight: 700;
+    }
+    #forecastIcon {
+        width:65px;
+        }
 }
