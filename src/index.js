@@ -1,3 +1,5 @@
+// Get user current time 
+
 let now = new Date();
 let currentDate = document.querySelector("#todayDate");
 let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -8,7 +10,8 @@ if (minute < 10) {
     minute = `0${minute}`;
 }
 currentDate.innerHTML = `${day}, ${hour}:${minute}`;
-//
+
+//Update the format of Date() information
 
 function formatDay (timestamp) {
     let date = new Date(timestamp*1000);
@@ -18,7 +21,8 @@ function formatDay (timestamp) {
     return days[day]; 
 }
 
-//
+// Display the 5 days forcast in the html file
+
 function displayForecast (response){
     let forecast = response.data.daily;
     let forecastElement = document.querySelector("#forecast");
@@ -39,14 +43,15 @@ function displayForecast (response){
     forecastElement.innerHTML= forecastHTML;   
 }
 
-//
+// Get the forcast informatin of a location
+
 function getForecast(coordinates){
     let apiKey = "96771e971243152d6b8948878c26adde";
     let apiUrlForcast = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
     axios.get(apiUrlForcast).then(displayForecast);
 }
 
-//
+// Display the choosen location weather information
 
 function changeTemperature(response) {
     let temperature = Math.round(response.data.main.temp);
@@ -66,7 +71,8 @@ function changeTemperature(response) {
     getForecast(response.data.coord)
 }
 
-////////
+// Get weather information of the user search
+
 function changeCity(city) {
     let h1 = document.querySelector("h1");
     h1.innerHTML = `${city}`;
@@ -86,7 +92,7 @@ form.addEventListener("submit", handleCity);
 
 changeCity("paris")
 
-//
+// Get current user position information
 
 function seeMyPosition(position) {
     let lat = position.coords.latitude;
